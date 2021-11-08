@@ -37,8 +37,10 @@ jobs:
       - run: echo "The merged key status right before we mess with the wiki is ${{ github.event.pull_request.merged }}"
       - name: Make changes
         run: |
-            echo "I should only see this if the PR was merged" >> changelog.md
-        if: github.event.pull_request.merged 
+            cDate=$(date +"%d %B, %Y")
+            entry=$(printf "# %s\n\n%s" "${cDate}" ${{ github.event.pull_request.body }} )
+            echo "${entry}" | cat - changelog.md > temp && mv temp changelog.md
+        if: github.event.pull_request.merged
       - name: Push to wiki
         run: |
           git config --local user.email "action@github.com"
