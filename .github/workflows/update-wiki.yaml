@@ -21,6 +21,8 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+      - run: echo "The merged key status is ${{ github.event.pull_request.merged }}"
+
       # - name: Checkout base code
       #   uses: actions/checkout@v2
       #   with:
@@ -28,7 +30,7 @@ jobs:
       - name: Checkout wiki code
         uses: actions/checkout@v2
         with:
-          repository: ${{github.repository}}.wiki
+          repository: ${{github.repository}}.wiki.git
           # github_token: ${{ secrets.GITHUB_TOKEN }}
           # path: markdown
       - name: Make changes
