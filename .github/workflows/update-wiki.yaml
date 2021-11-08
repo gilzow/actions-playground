@@ -22,6 +22,7 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - run: echo "The merged key status is ${{ github.event.pull_request.merged }}"
+      - run: echo "Contents of the pull request message? ${{ github.event.pull_request.body }}"
 
       # - name: Checkout base code
       #   uses: actions/checkout@v2
@@ -35,7 +36,8 @@ jobs:
           # path: markdown
       - name: Make changes
         run: |
-            echo "foobar" >> changelog.md 
+            echo "I should only see this if the PR was merged" >> changelog.md
+        if: github.event.pull_request.merged == 'true' 
       - name: Push to wiki
         run: |
           git config --local user.email "action@github.com"
