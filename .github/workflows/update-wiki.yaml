@@ -30,7 +30,7 @@ jobs:
       - name: Checkout wiki code
         uses: actions/checkout@v2
         with:
-          repository: ${{github.repository}}.wiki.git
+          repository: ${{github.repository}}.wiki
           # github_token: ${{ secrets.GITHUB_TOKEN }}
           # path: markdown
       - name: Make changes
@@ -38,7 +38,6 @@ jobs:
             echo "foobar" >> changelog.md 
       - name: Push to wiki
         run: |
-          cd markdown
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
