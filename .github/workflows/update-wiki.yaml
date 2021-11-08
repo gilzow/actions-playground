@@ -38,7 +38,7 @@ jobs:
       - name: Make changes
         run: |
             cDate=$(date +"%d %B, %Y")
-            entry=$(printf "# %s\n\n%s" "${cDate}" ${{ github.event.pull_request.body }} )
+            entry=$(printf "# %s\n\n%s" "${cDate}" "${{ github.event.pull_request.body }}" )
             echo "${entry}" | cat - changelog.md > temp && mv temp changelog.md
         if: github.event.pull_request.merged
       - name: Push to wiki
