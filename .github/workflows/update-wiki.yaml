@@ -21,15 +21,16 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
-      - name: Checkout base code
-        uses: actions/checkout@v2
-        with:
-          path: base-code
+      # - name: Checkout base code
+      #   uses: actions/checkout@v2
+      #   with:
+      #     path: base-code
       - name: Checkout wiki code
         uses: actions/checkout@v2
         with:
           repository: ${{github.repository}}.wiki
-          path: markdown
+          # github_token: ${{ secrets.GITHUB_TOKEN }}
+          # path: markdown
       - name: Make changes
         run: |
             echo "foobar" >> changelog.md 
